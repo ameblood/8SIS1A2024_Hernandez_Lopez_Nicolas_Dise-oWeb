@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/validacion.js"></script>
+</head>
+<body>
+    <div class="main-container">    
+      <div class ="container">
+         <div class="formulario">
+             <div class="parrafo">
+                <p>todo los formularios que se manejan en la web utilizando metodos para el envio o respuesta de la informacion, los mas comunes son:</p>
+                <br>
+                    <strong>get:</strong>este metodo s eencarga de enciar la informacion por la url a saloda estandar del navegador, esto propicia que se pueda cisualizar toda la informacion del formularios
+                    <br>
+                    <strong>POST</strong> este metodo se encarga de enciar la informacion por la url pero de forma oculta, lo que ofrece cierto nivel de seguridad, este metodo se usa comunmente para insertar un nuevo registro dentro del sistema 
+                    
+                </div> 
+            </div>
+                <div class="from">
+                    <form method="get" name="formulario" on>
+                        <label for="">nombre</label>
+                        <br>
+                        <input type="text" name="nombre" id="nombre">
+                        <br>
+                         <label for="">edad</label>
+                         <br>
+                         <input type="number" name="edad" id="edad" min="0" max="100" >
+                         <br>
+                         <label for="">gmail</label>
+                         <br>
+                         <input type="email" name="email" id="email">
+                         <br>
+                         <input type="submit" name="enviar" value="enviar dato">
+                         <br>
+                         <input type="reset" name="borrar" value="borrar datos">
+
+
+
+                    </form>
+
+                </div>
+        </div>
+    </div>
+
+
+    
+</body>
+</html>
