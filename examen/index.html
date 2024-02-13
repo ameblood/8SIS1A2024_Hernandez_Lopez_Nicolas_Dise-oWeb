@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida e Inversión</title>
+    <style>
+        body {
+            background-color: #9ae0fc;
+            color: white;
+        }
+        h1, label, p,span {
+            color: black;
+        }
+        .container {
+            display: flex;
+        }
+        .tabla-derecha {
+            flex: 1;
+            padding-left: 20px;
+        }
+        .tabla-derecha table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .tabla-derecha th, .tabla-derecha td {
+            border: 1px solid #0b0b0b;
+            text-align: left;
+            padding: 8px;
+            color: black; /* Cambio del color del texto a negro */
+        }
+        .tabla-derecha th {
+            background-color: #c72713;
+            color: black;
+        }
+        .formulario {
+            flex: 1;
+        }
+        .formulario label, .formulario input {
+            display: block;
+            margin-bottom: 10px;
+            color: #0b0b0b;
+        }
+        .mitad-derecha {
+            flex: 1;
+            background-color: #8EF8BF; /* Color de fondo de la mitad derecha */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenido/a a nuestro servicio de inversión</h1>
+    <div class="container">
+        <div class="formulario">
+            <p>Por favor, introduce la siguiente información:</p>
+            <form id="formulario">
+                <label for="cantidadInicial">Cantidad Inicial:</label>
+                <input type="number" id="cantidadInicial" name="cantidadInicial" placeholder="Ingrese la cantidad inicial" required>
+                <br><br>
+                <label for="porcentajeInversion">Porcentaje de Inversión:</label>
+                <input type="number" id="porcentajeInversion" name="porcentajeInversion" placeholder="Ingrese el porcentaje de inversión" required>
+                <span>%</span>
+                <br><br>
+                <label for="diasInversion">Número de días de inversión:</label>
+                <input type="number" id="diasInversion" name="diasInversion" placeholder="Ingrese el número de días de inversión" required>
+                <br><br>
+                <input type="submit" value="Invertir">
+            </form>
+        </div>
+        <div class="mitad-derecha tabla-derecha" id="tablaResultado"></div>
+    </div>
+
+    <script>
+        document.getElementById("formulario").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var cantidadInicial = parseFloat(document.getElementById("cantidadInicial").value);
+            var porcentajeInversion = parseFloat(document.getElementById("porcentajeInversion").value);
+            var diasInversion = parseInt(document.getElementById("diasInversion").value);
+            var tablaResultado = document.getElementById("tablaResultado");
+            var cantidadFinal = cantidadInicial;
+
+            if (isNaN(cantidadInicial) || cantidadInicial <= 0 || isNaN(porcentajeInversion) || porcentajeInversion <= 0 || porcentajeInversion > 100 || isNaN(diasInversion) || diasInversion <= 0 || diasInversion > 1095) {
+                alert("Por favor, complete todos los campos correctamente. El número de días de inversión debe estar entre 1 y 1095 (3 años).");
+                return;
+            }
+
+            var tableHTML = "<h2>Resultado de la inversión:</h2>";
+            tableHTML += "<table><tr><th>Día</th><th>Cantidad</th></tr>";
+
+            for (var dia = 1; dia <= diasInversion; dia++) {
+                cantidadFinal += (cantidadFinal * porcentajeInversion / 100) / 365;
+                tableHTML += "<tr><td>" + dia + "</td><td>" + cantidadFinal.toFixed(2) + "</td></tr>";
+            }
+
+            tableHTML += "</table>";
+            tablaResultado.innerHTML = tableHTML;
+        });
+    </script>
+</body>
+</html>
